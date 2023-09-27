@@ -45,6 +45,7 @@ Host $sshhost
   ServerAliveCountMax 120
 " | Out-File -Append -FilePath ~/.ssh/config
 }
+Export-ModuleMember -Function add_ssh
 
 <#
 .SYNOPSIS
@@ -61,6 +62,7 @@ function sshlist {
         }
     }
 }
+Export-ModuleMember -Function sshlist
 
 <#
 .SYNOPSIS
@@ -80,5 +82,4 @@ function ssh-add-all {
         }
     }
 }
-
-Export-ModuleMember -Function *
+Export-ModuleMember -Function ssh-add-all
