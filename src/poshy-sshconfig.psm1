@@ -1,6 +1,8 @@
 #!/usr/bin/env pwsh
 $ErrorActionPreference = "Stop"
 Set-StrictMode -Version Latest
+#Requires -Modules @{ ModuleName = "poshy-coreutils-ish"; RequiredVersion = "0.7.0" }
+#Requires -Modules @{ ModuleName = "poshy-lucidity"; RequiredVersion = "0.4.1" }
 
 
 <#
@@ -26,14 +28,14 @@ function add_ssh {
     if (-not (Test-Path ~/.ssh -ErrorAction SilentlyContinue)) {
         New-Item -Path ~/.ssh -ItemType Directory | Out-Null
         if (-not $IsWindows) {
-            Set-ItemNixMode -Path ~/.ssh -Mode 700
+            Set-ItemNixMode -Path ~/.ssh -OctalMode 700
         }
 
     }
     if (-not (Test-Path ~/.ssh/config -ErrorAction SilentlyContinue)) {
         New-Item -Path ~/.ssh/config -ItemType File | Out-Null
         if (-not $IsWindows) {
-            Set-ItemNixMode -Path ~/.ssh/config -Mode 600
+            Set-ItemNixMode -Path ~/.ssh/config -OctalMode 600
         }
     }
 "
